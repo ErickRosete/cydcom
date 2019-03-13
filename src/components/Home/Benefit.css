@@ -1,0 +1,28 @@
+.benefit {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: 0.5rem;
+}
+
+.benefit img {
+    margin-right: 1rem;
+    height: 50px;
+}
+
+.benefit p {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+@media (min-width: 600px) {
+    .benefit {
+        width: 40%
+    }
+    .benefit img {
+        height: 70px;
+    }
+    .benefit p {
+        font-size: 2rem;
+    }
+}

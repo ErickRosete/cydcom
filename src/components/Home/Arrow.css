@@ -1,0 +1,35 @@
+.arrow {
+    max-width: 45%;
+}
+
+.arrow:hover {
+    cursor: pointer;
+}
+
+.gray-arrow {
+    fill: var(--secondary-bg-color);
+}
+
+.arrow:hover:hover .gray-arrow {
+    fill: var(--secondary-contrast-color);
+}
+
+.red-arrow {
+    fill: var(--main-bg-color);
+}
+
+.arrow:hover:hover .red-arrow {
+    fill: var(--main-contrast-color);
+}
+
+.svg-text {
+    font-size: 1.5rem;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+}
+
+@media (min-width: 600px) {
+    .arrow {
+        margin: 0.5rem;
+    }
+}
