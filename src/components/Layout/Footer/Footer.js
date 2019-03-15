@@ -1,6 +1,5 @@
 import React from "react";
 import "./Footer.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row, Col } from "react-bootstrap";
 import logoAstra from "../../../Assets/Images/Logos/logo-astra.png"
 

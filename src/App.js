@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import ScrollToTop from "./containers/ScrollToTop/ScrollToTop";
+import HomePage from "./pages/Home/Home"
+import RentPage from "./pages/Rent/Rent"
+import RentCategoryPage from "./pages/Rent/Category/Category"
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -14,10 +17,7 @@ import { faFacebook, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
-
 import "./App.css";
-
-import HomePage from "./pages/Home/Home"
 
 const client = new ApolloClient({
   uri: `${process.env.REACT_APP_SERVER_URL}/graphql`
@@ -40,8 +40,10 @@ class App extends Component {
         <ScrollToTop>
           <ApolloProvider client={client}>
             <Switch>
-              <Redirect from="/" to="/inicio" exact />
               <Route path="/inicio" component={HomePage} />
+              <Route path="/renta/:id" component={RentCategoryPage} />
+              <Route path="/renta" component={RentPage} />
+              <Redirect to="/inicio" />
             </Switch>
           </ApolloProvider>
         </ScrollToTop>
