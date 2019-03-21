@@ -2,3 +2,9 @@
     max-height: 20rem;
     overflow: hidden;
 }
+
+.rent__category-title {
+    text-align: center;
+    color: var(--main-bg-color);
+    margin-top: 2rem;
+}

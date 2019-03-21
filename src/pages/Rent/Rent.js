@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import Layout from "../../components/Layout/Layout"
 import Spinner from "../../components/Spinner/Spinner"
-import "./Rent.css"
 
-import Pagination from "rc-pagination";
-import "rc-pagination/assets/index.css";
 
 import { Query } from "react-apollo";
-import { GET_PRODUCTS } from "./constants";
+import { GET_SUBCATEGORIES } from "./constants";
 
+import "./Rent.css"
+import "rc-pagination/assets/index.css";
+
+import CategoriesList from "../../components/Categories/CardList/CardList"
 
 export class RentPage extends Component {
     render() {
-        const itemsPerPage = 10;
-
         return (
             <Layout>
                 <div className="rent">
@@ -28,50 +27,17 @@ export class RentPage extends Component {
                             <h1>Categorías</h1>
                         </div>
 
-                        <Query query={GET_PRODUCTS}>
+                        <Query query={GET_SUBCATEGORIES}>
                             {({ loading, error, data }) => {
                                 if (loading) return <Spinner />;
-                                if (error) return <p>Error :( recarga la pagina!</p>;
-
-                                let filteredProducts = data.products;
-
-                                if (this.state.filter) {
-                                    const filter = this.state.filter.toUpperCase();
-                                    filteredProducts = data.products.filter(
-                                        product =>
-                                            product.name.toUpperCase().includes(filter) ||
-                                            product.price.toString().includes(filter) ||
-                                            product.shortDescription.toUpperCase().includes(filter) ||
-                                            product.description.toUpperCase().includes(filter)
-                                    );
-                                }
-
-                                //pagination logic
-                                const first = (this.state.currentPage - 1) * itemsPerPage;
-                                const lastAux = this.state.currentPage * itemsPerPage;
-                                const last =
-                                    lastAux > filteredProducts.length
-                                        ? filteredProducts.length
-                                        : lastAux;
-
+                                if (error) return <p>Error :( recarga la página!</p>;
                                 return (
-                                    <React.Fragment>
-                                        {/* <CardList
-                                            products={filteredProducts.slice(first, last)}
-                                            openDeleteDialog={this.handleClickOpenDeleteDialog}
-                                        /> */}
-                                        <Pagination
-                                            onChange={this.handleChangePage}
-                                            current={this.state.currentPage}
-                                            total={filteredProducts.length}
-                                            defaultPageSize={itemsPerPage}
-                                        />
-                                    </React.Fragment>
+                                    <CategoriesList categories={data.subcategories}></CategoriesList>
                                 );
                             }}
                         </Query>
-
                     </div>
+
                 </div>
 
             </Layout>

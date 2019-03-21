@@ -1,11 +1,77 @@
 import React, { Component } from 'react';
 import Layout from "../../../components/Layout/Layout"
 
+import CardList from "../../../components/Product/CardList/CardList"
+import ProductModal from "../../../components/Product/Modal/Modal"
+
 import foto from "../../../Assets/Images/Home/foto2.png"
+import { GET_SUBCATEGORY_PRODUCTS } from "../constants";
+
+import Pagination from "rc-pagination";
+
+import InputGroup from "react-bootstrap/InputGroup";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Form from "react-bootstrap/Form"
+import Query from "react-apollo/Query"
+import Spinner from "../../../components/Spinner/Spinner"
+
 import "./Category.css"
 
 export class RentPage extends Component {
+    constructor(props) {
+        super(props)
+        this.productsRef = React.createRef()
+    }
+
+    state = {
+        filter: "",
+        currentPage: 1,
+        modalShow: false,
+        selectedProduct: {},
+    }
+
+    handleChangePage = page => {
+        window.scrollTo(0, this.productsRef.current.offsetTop)
+        this.setState({
+            currentPage: page
+        });
+    };
+
+    handleModalClose = () => this.setState({ modalShow: false });
+
+    handleModalShow = (product) => {
+        this.setState({
+            modalShow: true,
+            selectedProduct: product
+        });
+    }
+
+    handleFilterChange = (event) => {
+        this.setState({
+            filter: event.target.value
+        })
+    }
+
+    filterProducts = products => {
+        let filteredProducts = products ? products : [];
+
+        if (this.state.filter) {
+            const filter = this.state.filter.toUpperCase();
+            filteredProducts = products.filter(
+                product =>
+                    product.name.toUpperCase().includes(filter) ||
+                    product.price.toString().includes(filter) ||
+                    product.shortDescription.toUpperCase().includes(filter) ||
+                    product.description.toUpperCase().includes(filter)
+            );
+        }
+        return filteredProducts;
+    };
+
+
     render() {
+        const itemsPerPage = 9;
         return (
             <Layout>
                 <div className="rent__category">
@@ -13,18 +79,73 @@ export class RentPage extends Component {
                         <img src={foto} alt="promocion" className="img-fluid"></img>
                     </div>
 
-                    <div className="">
-                        <h1>Categorías</h1>
+                    <Query query={GET_SUBCATEGORY_PRODUCTS} variables={{ id: this.props.match.params.id }}>
+                        {({ loading, error, data }) => {
+                            if (loading) return <Spinner />;
+                            if (error) return <p>Error :( recarga la pagina!</p>;
 
-                    </div>
+                            if (data.subcategoryProducts.length === 0) {
+                                return <h2 style={{ textAlign: "center", margin: "4rem" }}>Lamentablemente, aún no contamos con artículos en esta categoría</h2>
+                            }
 
-                    <p>hola</p>
-                    <p>hola</p>
-                    <p>hola</p>
-                    <p>hola</p>
+                            const subcategory = data.subcategoryProducts[0].subcategories.find((subcategory) => subcategory._id === this.props.match.params.id);
+
+                            let filteredProducts = this.filterProducts(data.subcategoryProducts);
+
+                            //pagination logic
+                            const first = (this.state.currentPage - 1) * itemsPerPage;
+                            const lastAux = this.state.currentPage * itemsPerPage;
+                            const last =
+                                lastAux > filteredProducts.length
+                                    ? filteredProducts.length
+                                    : lastAux;
+
+                            return (
+
+                                <React.Fragment>
+                                    <div className="rent__category-title" ref={this.productsRef}>
+                                        <h1>{subcategory.name}</h1>
+                                    </div>
+
+                                    <Form style={{ maxWidth: "90%", margin: "auto", marginTop: "2rem" }}>
+                                        <Form.Group controlId="Buscador">
+                                            <InputGroup>
+                                                <InputGroup.Prepend>
+                                                    <InputGroup.Text id="icon">
+                                                        <FontAwesomeIcon
+                                                            icon="search"
+                                                            size="lg"
+                                                        />
+                                                    </InputGroup.Text>
+                                                </InputGroup.Prepend>
+                                                <Form.Control
+                                                    onChange={this.handleFilterChange}
+                                                    value={this.state.filter}
+                                                    type="text"
+                                                    placeholder="buscar producto..."
+                                                />
+                                            </InputGroup>
+                                        </Form.Group>
+                                    </Form>
+                                    <CardList
+                                        handleModalShow={this.handleModalShow}
+                                        products={filteredProducts.slice(first, last)}
+                                        openDeleteDialog={this.handleClickOpenDeleteDialog}
+                                    />
+                                    <div style={{ display: "flex", justifyContent: "center" }}>
+                                        <Pagination
+                                            onChange={this.handleChangePage}
+                                            current={this.state.currentPage}
+                                            total={filteredProducts.length}
+                                            defaultPageSize={itemsPerPage}
+                                        />
+                                    </div>
+                                </React.Fragment>
+                            );
+                        }}
+                    </Query>
                 </div>
-
-
+                <ProductModal show={this.state.modalShow} onHide={this.handleModalClose} product={this.state.selectedProduct} />
             </Layout >
         )
     }

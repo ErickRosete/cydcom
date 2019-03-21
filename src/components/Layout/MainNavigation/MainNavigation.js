@@ -29,9 +29,9 @@ const mainNavigation = props => {
             <Nav.Link as={NavLink} to="/renta">
               renta
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/venta">
+            {/* <Nav.Link as={NavLink} to="/venta">
               venta
-            </Nav.Link>
+            </Nav.Link> */}
             <Nav.Link as={NavLink} to="/nosotros">
               nosotros
             </Nav.Link>

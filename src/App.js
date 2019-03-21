@@ -11,7 +11,9 @@ import {
   faHome,
   faChevronLeft,
   faMapMarkerAlt,
-  faSearch
+  faSearch,
+  faChevronCircleLeft,
+  faChevronCircleRight
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
@@ -32,7 +34,9 @@ class App extends Component {
       faSearch,
       faHome,
       faChevronLeft,
-      faMapMarkerAlt
+      faMapMarkerAlt,
+      faChevronCircleLeft,
+      faChevronCircleRight
     ]);
 
     return (

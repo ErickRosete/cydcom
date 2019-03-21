@@ -1,0 +1,7 @@
+.carousel-control-next, .carousel-control-next:active, .carousel-control-next:focus, .carousel-control-prev, .carousel-control-prev:focus, .carousel-control-prev:active {
+    color: var(--secondary-bg-color)
+}
+
+.carousel-control-next:hover, .carousel-control-prev:hover {
+    color: var(--secondary-contrast-color)
+}
