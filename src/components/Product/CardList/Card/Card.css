@@ -1,9 +1,21 @@
 .product__card {
     position: relative;
+    height: 100%;
 }
 
+.product__card-info {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.product__card-img-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
 .product__card-info .bg-gray {
-    height: 3rem;
+    min-height: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,6 +34,7 @@
 .product__card-info p {
     padding: 0;
     margin: 0;
+    font-size: 1.5rem;
 }
 
 .product__card-detail {

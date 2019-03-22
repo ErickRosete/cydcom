@@ -1,10 +1,32 @@
 .rent__category-promotion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-height: 20rem;
     overflow: hidden;
 }
 
-.rent__category-title {
+.rent__category-info {
+    margin: 2rem;
+    margin-bottom: 3rem;
     text-align: center;
+}
+
+.rent__category-title {
     color: var(--main-bg-color);
-    margin-top: 2rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.rent__category-info p {
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 600px) {
+    .rent__category-info p {
+        max-width: 80%;
+        margin: auto;
+        margin-bottom: 2rem;
+        text-align: left;
+    }
 }

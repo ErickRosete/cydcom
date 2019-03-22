@@ -4,17 +4,19 @@ import Layout from "../../../components/Layout/Layout"
 import CardList from "../../../components/Product/CardList/CardList"
 import ProductModal from "../../../components/Product/Modal/Modal"
 
-import foto from "../../../Assets/Images/Home/foto2.png"
+import foto from "../../../Assets/Images/Discounts/descuento.png"
 import { GET_SUBCATEGORY_PRODUCTS } from "../constants";
 
 import Pagination from "rc-pagination";
 
 import InputGroup from "react-bootstrap/InputGroup";
+import Link from "react-router-dom/Link"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Form from "react-bootstrap/Form"
 import Query from "react-apollo/Query"
 import Spinner from "../../../components/Spinner/Spinner"
+import ProductContact from "../../../components/Product/Contact/Contact"
 
 import "./Category.css"
 
@@ -103,11 +105,16 @@ export class RentPage extends Component {
                             return (
 
                                 <React.Fragment>
-                                    <div className="rent__category-title" ref={this.productsRef}>
-                                        <h1>{subcategory.name}</h1>
+                                    <div className="rent__category-info" ref={this.productsRef}>
+                                        <h1 className="rent__category-title">{subcategory.name}</h1>
+                                        <p>Rentamos {subcategory.name} de todas las marcas y características, con planes de renta desde 1 día hasta 36 meses.</p>
+                                        <Link to="/renta">
+                                            <button className="btn btn-main">Regresar a categorías</button>
+                                        </Link>
                                     </div>
 
-                                    <Form style={{ maxWidth: "90%", margin: "auto", marginTop: "2rem" }}>
+
+                                    <Form style={{ maxWidth: "80%", margin: "auto", marginTop: "2rem" }}>
                                         <Form.Group controlId="Buscador">
                                             <InputGroup>
                                                 <InputGroup.Prepend>
@@ -145,6 +152,7 @@ export class RentPage extends Component {
                         }}
                     </Query>
                 </div>
+                <ProductContact></ProductContact>
                 <ProductModal show={this.state.modalShow} onHide={this.handleModalClose} product={this.state.selectedProduct} />
             </Layout >
         )

@@ -5,11 +5,12 @@ import Spinner from "../../components/Spinner/Spinner"
 
 import { Query } from "react-apollo";
 import { GET_SUBCATEGORIES } from "./constants";
-
 import "./Rent.css"
 import "rc-pagination/assets/index.css";
 
 import CategoriesList from "../../components/Categories/CardList/CardList"
+
+import ProductContact from "../../components/Product/Contact/Contact"
 
 export class RentPage extends Component {
     render() {
@@ -37,6 +38,8 @@ export class RentPage extends Component {
                             }}
                         </Query>
                     </div>
+
+                    <ProductContact></ProductContact>
 
                 </div>
 
