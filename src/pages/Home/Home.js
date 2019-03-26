@@ -2,13 +2,14 @@ import React, { Component } from "react";
 
 import { Helmet } from "react-helmet";
 import Layout from "../../components/Layout/Layout";
-import Arrow from "../../components/Home/Arrow"
 
 import banner from "../../Assets/Images/Home/banner.png";
 import tabla500w from "../../Assets/Images/Home/tabla-500w.png"
 import tabla1000w from "../../Assets/Images/Home/tabla-1000w.png"
 import tabla2100w from "../../Assets/Images/Home/tabla-2100w.png"
 import tabla4200w from "../../Assets/Images/Home/tabla-4200w.png"
+
+import Process from "../../components/Home/Process/Process"
 
 import Link from "react-router-dom/Link"
 import "./Home.css";
@@ -17,19 +18,48 @@ export class HomePage extends Component {
   constructor(props) {
     super(props);
     this.introEl = React.createRef();
+    this.processEl = React.createRef();
+
+    if (window.screen.width >= 768) {
+      //computer
+      this.state = {
+        navbarColor: "rgba(0, 0, 0, 0)",
+        arrowTransition: [false, false, false, false]
+      };
+    } else {
+      //cellphone
+      this.state = {
+        navbarColor: "#B2080D",
+        arrowTransition: [false, false, false, false]
+      };
+    }
   }
 
-  state = {
-    navbarColor: "rgba(0, 0, 0, 0)"
-  };
-
   componentDidMount() {
-    window.addEventListener("scroll", this.scrollHandler);
+    if (window.screen.width >= 768) {
+      window.addEventListener("scroll", this.scrollHandler);
+    }
+    else {
+      setTimeout(this.arrowAnimation, 500);
+    }
   }
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.scrollHandler);
     this.setState({ navbarColor: "#B2080D" });
+  }
+
+  arrowAnimation = () => {
+    this.setState({ arrowTransition: [true, false, false, false] })
+    setTimeout(() => {
+      this.setState({ arrowTransition: [true, true, false, false] })
+    }, 500);
+    setTimeout(() => {
+      this.setState({ arrowTransition: [true, true, true, false] })
+    }, 1000);
+    setTimeout(() => {
+      this.setState({ arrowTransition: [true, true, true, true] })
+    }, 1500);
   }
 
   scrollHandler = () => {
@@ -40,9 +70,17 @@ export class HomePage extends Component {
       }
     } else {
       if (this.state.navbarColor !== "#B2080D") {
-        this.setState({ navbarColor: "#B2080D" });
+        this.setState({
+          navbarColor: "#B2080D",
+        });
       }
     }
+
+    const arrowsVisible = window.scrollY > this.processEl.current.clientHeight;
+    if (arrowsVisible && !this.state.arrowTransition[0]) {
+      this.arrowAnimation();
+    }
+
   };
 
   render() {
@@ -65,15 +103,8 @@ export class HomePage extends Component {
             </div>
           </div>
 
-          <div className="home__process">
-            <h1 className="home__process-title">proceso de renta</h1>
-            <h2 className="home__process-subtitle">Optimiza el plan financiero de tu empresa</h2>
-            <div className="home__process-steps">
-              <Arrow text="1. Cotización" red />
-              <Arrow text="2. Documentación" gray />
-              <Arrow text="3. Entrega" red />
-              <Arrow text="4. Optimiza" gray />
-            </div>
+          <div ref={this.processEl}>
+            <Process arrowTransition={this.state.arrowTransition}></Process>
           </div>
 
           <div className="home__table">

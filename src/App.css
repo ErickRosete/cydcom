@@ -27,8 +27,15 @@ h1 {
   font-size: 3rem;
 }
 
-p {
+p, input, label, textarea {
   font-family: 'Abel', sans-serif;
+}
+
+input, label, textarea {
+  font-size: 1.25rem;
+}
+
+p {
   font-size: 1.5rem;
 }
 
@@ -71,5 +78,8 @@ p {
   }
   p {
     font-size: 2rem;
+  }
+  input, label, textarea {
+    font-size: 1.5rem;
   }
 }

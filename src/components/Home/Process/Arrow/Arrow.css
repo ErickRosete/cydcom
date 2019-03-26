@@ -29,9 +29,9 @@
 }
 
 @media (min-width: 600px) {
-    .arrow {
+    /* .arrow {
         margin: 0.5rem;
-    }
+    } */
     .svg-text {
         font-size: 1.8rem;
     }

@@ -1,0 +1,31 @@
+.contact__title h1 {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.contact__title {
+    padding: 1rem;
+}
+
+.contact__location {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.contact__location-address p {
+    margin-bottom: 0.25rem
+}
+
+.contact__location-address span:after {
+    content: "\000A";
+    white-space: pre;
+}
+
+@media (min-width: 600px) {
+    .contact__title {
+        padding: 3rem;
+    }
+    .contact__location-address span:after {
+        content: "";
+    }
+}

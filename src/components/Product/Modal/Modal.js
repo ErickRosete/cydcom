@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import "./Modal.css"
 import ProductCarousel from "./Carousel/Carousel"
 import { Col, Row, Container } from "react-bootstrap"
+import Link from "react-router-dom/Link"
 
 const ProductModal = (props) => {
     const product = props.product;
@@ -43,8 +44,9 @@ const ProductModal = (props) => {
                 </Container>
             </Modal.Body >
             <Modal.Footer>
-                <button onClick={props.onHide} className="btn btn-main">Regresar al catálogo</button>
-                <button onClick={props.onHide} className="btn btn-main d-none d-lg-block">Solicita cotización</button>
+                <Link to="/contacto">
+                    <button onClick={props.onHide} className="btn btn-main">Solicita cotización</button>
+                </Link>
             </Modal.Footer>
         </Modal >
     )

@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import ScrollToTop from "./containers/ScrollToTop/ScrollToTop";
 import HomePage from "./pages/Home/Home"
 import RentPage from "./pages/Rent/Rent"
+import ContactPage from "./pages/Contact/Contact"
 import RentCategoryPage from "./pages/Rent/Category/Category"
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -46,6 +47,7 @@ class App extends Component {
             <Switch>
               <Route path="/inicio" component={HomePage} />
               <Route path="/renta/:id" component={RentCategoryPage} />
+              <Route path="/contacto" component={ContactPage} />
               <Route path="/renta" component={RentPage} />
               <Redirect to="/inicio" />
             </Switch>
