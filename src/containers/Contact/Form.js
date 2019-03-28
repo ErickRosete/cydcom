@@ -16,7 +16,7 @@ export class ContactForm extends Component {
         equipment: "",
         quantity: "",
         project: "",
-        showAlert: true
+        showAlert: false
     }
 
     changeHandler = (name, event) => {

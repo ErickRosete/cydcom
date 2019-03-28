@@ -6,6 +6,7 @@ import HomePage from "./pages/Home/Home"
 import RentPage from "./pages/Rent/Rent"
 import ContactPage from "./pages/Contact/Contact"
 import RentCategoryPage from "./pages/Rent/Category/Category"
+import AboutPage from "./pages/About/About"
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -49,6 +50,7 @@ class App extends Component {
               <Route path="/renta/:id" component={RentCategoryPage} />
               <Route path="/contacto" component={ContactPage} />
               <Route path="/renta" component={RentPage} />
+              <Route path="/nosotros" component={AboutPage} />
               <Redirect to="/inicio" />
             </Switch>
           </ApolloProvider>

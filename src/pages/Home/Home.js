@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import { Helmet } from "react-helmet";
 import Layout from "../../components/Layout/Layout";
 
 import banner from "../../Assets/Images/Home/banner.png";
@@ -50,16 +49,13 @@ export class HomePage extends Component {
   }
 
   arrowAnimation = () => {
-    this.setState({ arrowTransition: [true, false, false, false] })
-    setTimeout(() => {
-      this.setState({ arrowTransition: [true, true, false, false] })
-    }, 500);
-    setTimeout(() => {
-      this.setState({ arrowTransition: [true, true, true, false] })
-    }, 1000);
-    setTimeout(() => {
-      this.setState({ arrowTransition: [true, true, true, true] })
-    }, 1500);
+    const arrowTransition = [...this.state.arrowTransition]
+    for (let i = 0; i < arrowTransition.length; i++) {
+      setTimeout(() => {
+        arrowTransition[i] = true;
+        this.setState({ arrowTransition })
+      }, 500 * i);
+    }
   }
 
   scrollHandler = () => {
@@ -87,13 +83,6 @@ export class HomePage extends Component {
     return (
       <Layout navbarColor={this.state.navbarColor}>
         <div className="home">
-          <Helmet>
-            <title>CYDCOM | Renta de computadoras</title>
-            <meta
-              name="description"
-              content="Renta de computadoras, proyectores e ipad"
-            />
-          </Helmet>
 
           <div className="home__banner" ref={this.introEl}>
             <img className="img-fluid" src={banner} alt="banner"></img>
