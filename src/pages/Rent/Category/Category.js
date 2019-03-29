@@ -3,9 +3,10 @@ import Layout from "../../../components/Layout/Layout"
 
 import CardList from "../../../components/Product/CardList/CardList"
 import ProductModal from "../../../components/Product/Modal/Modal"
+import PromotionCarousel from "../../../components/Carousel/Carousel"
 
-import foto from "../../../Assets/Images/Discounts/descuento.png"
-import { GET_SUBCATEGORY_PRODUCTS } from "../constants";
+// import foto from "../../../Assets/Images/Discounts/descuento.png"
+import { GET_SUBCATEGORY_PRODUCTS, GET_PROMOTIONS } from "../constants";
 
 import Pagination from "rc-pagination";
 
@@ -77,9 +78,19 @@ export class RentPage extends Component {
         return (
             <Layout>
                 <div className="rent__category">
-                    <div className="rent__category-promotion">
-                        <img src={foto} alt="promocion" className="img-fluid"></img>
-                    </div>
+                    <Query query={GET_PROMOTIONS}>
+                        {({ loading, error, data }) => {
+                            if (loading) return <Spinner />;
+                            if (error) return <p>Error :( recarga la pagina!</p>;
+                            const images = data.activePromotions.map(promotion => promotion.imageLink);
+
+                            return (
+                                <div className="rent__category-promotion">
+                                    {images && <PromotionCarousel images={images}></PromotionCarousel>}
+                                </div>
+                            );
+                        }}
+                    </Query>
 
                     <Query query={GET_SUBCATEGORY_PRODUCTS} variables={{ id: this.props.match.params.id }}>
                         {({ loading, error, data }) => {

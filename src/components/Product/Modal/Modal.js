@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from "react-bootstrap/Modal";
 import "./Modal.css"
-import ProductCarousel from "./Carousel/Carousel"
+import ProductCarousel from "../../Carousel/Carousel"
 import { Col, Row, Container } from "react-bootstrap"
 import Link from "react-router-dom/Link"
 

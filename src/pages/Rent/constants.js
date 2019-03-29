@@ -44,3 +44,13 @@ export const GET_SUBCATEGORIES = gql`
     }
   }
 `;
+
+export const GET_PROMOTIONS = gql`
+{
+  activePromotions {
+    _id
+    name
+    imageLink
+  }
+}
+`;

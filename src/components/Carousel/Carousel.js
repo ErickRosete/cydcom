@@ -4,14 +4,15 @@ import "./Carousel.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
-const ProductCarousel = (props) => {
+const ImageCarousel = (props) => {
     return (
         <Carousel
             controls={props.images.length > 1}
+            indicators={false}
             prevIcon={<FontAwesomeIcon icon="chevron-circle-left" size="3x" />}
             nextIcon={<FontAwesomeIcon icon="chevron-circle-right" size="3x" />}
         >
-            {props.images.map((image, index) => (<Carousel.Item key={image}>
+            {props.images.map((image, index) => (<Carousel.Item key={`${image}/${index}`}>
                 <img
                     className="d-block w-100"
                     src={image}
@@ -27,4 +28,4 @@ const ProductCarousel = (props) => {
     );
 }
 
-export default ProductCarousel
+export default ImageCarousel

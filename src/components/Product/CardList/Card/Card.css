@@ -8,12 +8,14 @@
     display: flex;
     flex-direction: column;
 }
-.product__card-img-cont{
+
+.product__card-img-cont {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
 }
+
 .product__card-info .bg-gray {
     min-height: 3rem;
     display: flex;
@@ -27,6 +29,7 @@
 
 .product__card-info h2 {
     text-transform: uppercase;
+    font-size: 2rem;
     padding: 0;
     margin: 0;
 }
