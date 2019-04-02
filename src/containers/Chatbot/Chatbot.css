@@ -1,0 +1,39 @@
+.chatbot-button:focus {
+    outline: 0;
+}
+
+.chatbot-button {
+    background-color: var(--main-contrast-color);
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 1rem;
+    right: 0.35rem;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.chatbot-frame {
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+}
+
+.chatbot-window {
+    position: fixed;
+    bottom: 4rem;
+    right: 0.35rem;
+}
+
+@media (min-width: 600px) {
+    .chatbot-button {
+        right: 1rem;
+        font-size: 1.2rem;
+    }
+    .chatbot-window {
+        right: 1rem;
+    }
+}
