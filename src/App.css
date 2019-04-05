@@ -54,6 +54,7 @@ p {
   color: white;
   background-color: var(--main-bg-color);
   border: 1px solid var(--main-bg-color);
+  cursor: pointer;
 }
 
 .btn-main:hover, .btn-main:active, .btn-main:focus {
@@ -64,6 +65,7 @@ p {
 .btn-secondary {
   background-color: var(--secondary-bg-color);
   border: 1px solid var(--secondary-bg-color);
+  cursor: pointer;
 }
 
 .btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus {

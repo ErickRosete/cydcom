@@ -38,6 +38,9 @@ const mainNavigation = props => {
             <Nav.Link as={NavLink} to="/contacto">
               contacto
             </Nav.Link>
+            <Nav.Link as={NavLink} to="/cotizacion">
+              cotización
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

@@ -56,6 +56,38 @@ export class RentPage extends Component {
         })
     }
 
+    handleQuotation = () => {
+        let productQuotations = JSON.parse(localStorage.getItem('productQuotations'));
+        console.log(productQuotations);
+        if (!productQuotations) {
+            productQuotations = [];
+        }
+
+        const index = productQuotations.findIndex(productQuotation =>
+            productQuotation.product._id === this.state.selectedProduct._id)
+
+        if (index >= 0) {
+            //already in cart
+            const updatedProductQuotation = {
+                ...productQuotations[index],
+                quantity: productQuotations[index].quantity + 1
+            }
+            productQuotations[index] = updatedProductQuotation;
+        }
+        else {
+            //not in cart
+            const newProductQuotation = {
+                product: this.state.selectedProduct,
+                comment: "",
+                quantity: 1
+            }
+            productQuotations.push(newProductQuotation)
+        }
+
+        productQuotations = JSON.stringify(productQuotations);
+        localStorage.setItem('productQuotations', productQuotations)
+    }
+
     filterProducts = products => {
         let filteredProducts = products ? products : [];
 
@@ -164,7 +196,12 @@ export class RentPage extends Component {
                     </Query>
                 </div>
                 <ProductContact></ProductContact>
-                <ProductModal show={this.state.modalShow} onHide={this.handleModalClose} product={this.state.selectedProduct} />
+                <ProductModal
+                    show={this.state.modalShow}
+                    onHide={this.handleModalClose}
+                    product={this.state.selectedProduct}
+                    handleQuotation={this.handleQuotation}
+                />
             </Layout >
         )
     }

@@ -4,7 +4,7 @@ import ContactForm from "../../containers/Contact/Form"
 import Map from "../../components/Map/Map"
 import "./Contact.css";
 
-export class HomePage extends Component {
+export class ContactPage extends Component {
 
     render() {
         return (
@@ -36,4 +36,4 @@ export class HomePage extends Component {
     }
 }
 
-export default HomePage;
+export default ContactPage;

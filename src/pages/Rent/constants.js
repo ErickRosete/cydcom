@@ -5,7 +5,6 @@ export const GET_PRODUCTS = gql`
     products {
         _id
         name
-        price
         imageLinks
         shortDescription
         description
@@ -22,7 +21,6 @@ export const GET_SUBCATEGORY_PRODUCTS = gql`
     subcategoryProducts(id: $id) {
         _id
         name
-        price
         imageLinks
         shortDescription
         description

@@ -44,8 +44,8 @@ const ProductModal = (props) => {
                 </Container>
             </Modal.Body >
             <Modal.Footer>
-                <Link to="/contacto">
-                    <button onClick={props.onHide} className="btn btn-main">Solicita cotización</button>
+                <Link to="/cotizacion">
+                    <button onClick={props.handleQuotation} className="btn btn-main">Solicita cotización</button>
                 </Link>
             </Modal.Footer>
         </Modal >
