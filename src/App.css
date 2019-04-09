@@ -73,6 +73,10 @@ p {
   border: 1px solid var(--secondary-contrast-color);
 }
 
+.input-btn {
+  border-top-left-radius: .25rem;
+  border-bottom-left-radius: .25rem;}
+
 @media (min-width: 600px) {
   .btn {
     padding: 0.5rem 2.5rem;
@@ -90,5 +94,9 @@ p {
   }
   input, label, textarea {
     font-size: 1.5rem;
+  }
+  .input-btn {
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
   }
 }

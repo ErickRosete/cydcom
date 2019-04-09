@@ -76,6 +76,15 @@
     margin-bottom: 2rem;
 }
 
+.client-form-cont {
+    padding: 1rem;
+}
+
+.client-form {
+    max-width: 90%;
+    margin: auto;
+}
+
 @media (min-width: 600px) {
     .quotation__title {
         padding: 3rem;
@@ -93,5 +102,11 @@
     }
     .quotation__product-info {
         width: 50%;
+    }
+    .client-form-cont {
+        padding: 2rem;
+    }
+    .client-form {
+        max-width: 70%;
     }
 }
