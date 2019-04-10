@@ -24,13 +24,13 @@
 }
 
 .main-navigation .logo {
-    max-width: 10rem;
+    max-width: 8rem;
     height: auto;
 }
 
 @media (min-width: 600px) {
     .main-navigation .logo {
-        max-width: 15rem;
+        max-width: 13rem;
     }
     .navbar {
         padding: 0.5rem 4rem;

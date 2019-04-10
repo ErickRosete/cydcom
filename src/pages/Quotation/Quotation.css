@@ -85,6 +85,24 @@
     margin: auto;
 }
 
+.client-email-popper {
+    background-color: var(--main-bg-color);
+    max-width: 50%;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.client-email-popper p {
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+.client-email-popper-arrow {
+    background-color: var(--main-bg-color);
+    width: 1rem;
+    height: 1rem;
+}
+
 @media (min-width: 600px) {
     .quotation__title {
         padding: 3rem;
@@ -108,5 +126,11 @@
     }
     .client-form {
         max-width: 70%;
+    }
+    .client-form .form-control {
+        line-height: 2;
+    }
+    .client-email-popper p {
+        font-size: 1.5rem;
     }
 }

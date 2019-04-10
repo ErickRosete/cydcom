@@ -13,6 +13,7 @@ import Process from "../../components/Home/Process/Process"
 import Link from "react-router-dom/Link"
 import "./Home.css";
 
+const mainColor = "#0485B7"
 export class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +29,7 @@ export class HomePage extends Component {
     } else {
       //cellphone
       this.state = {
-        navbarColor: "#B2080D",
+        navbarColor: mainColor,
         arrowTransition: [false, false, false, false]
       };
     }
@@ -45,7 +46,7 @@ export class HomePage extends Component {
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.scrollHandler);
-    this.setState({ navbarColor: "#B2080D" });
+    this.setState({ navbarColor: mainColor });
   }
 
   arrowAnimation = () => {
@@ -65,9 +66,9 @@ export class HomePage extends Component {
         this.setState({ navbarColor: "rgba(0, 0, 0, 0)" });
       }
     } else {
-      if (this.state.navbarColor !== "#B2080D") {
+      if (this.state.navbarColor !== mainColor) {
         this.setState({
-          navbarColor: "#B2080D",
+          navbarColor: mainColor,
         });
       }
     }

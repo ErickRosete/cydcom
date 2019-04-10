@@ -1,6 +1,6 @@
 :root {
-  --main-bg-color: #b2080d;
-  --main-contrast-color: #7A0009;
+  --main-bg-color: #0485B7;
+  --main-contrast-color: #005F7C;
   --secondary-bg-color: #403d39;
   --secondary-contrast-color: #262421;
   --light-gray: #f7f7f7;
@@ -75,7 +75,8 @@ p {
 
 .input-btn {
   border-top-left-radius: .25rem;
-  border-bottom-left-radius: .25rem;}
+  border-bottom-left-radius: .25rem;
+}
 
 @media (min-width: 600px) {
   .btn {

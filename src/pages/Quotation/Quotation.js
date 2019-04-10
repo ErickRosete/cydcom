@@ -10,7 +10,8 @@ import {
     GET_CLIENT_BY_EMAIL,
     ADD_PRODUCT_QUOTATION, ADD_QUOTATION, EDIT_CLIENT, ADD_CLIENT
 } from "./constants"
-
+import { Manager, Reference, Popper } from 'react-popper';
+import { Arrow } from "./Arrow";
 
 import "./Quotation.css";
 
@@ -23,7 +24,7 @@ export class QuotationPage extends Component {
             name: "",
             phone: "",
             address: ""
-        }
+        },
     }
 
     componentDidMount() {
@@ -50,6 +51,13 @@ export class QuotationPage extends Component {
     }
 
     changeClientHandler = (name, event) => {
+        if (name === "email") {
+            //scroll to update popper position
+            if (!this.state.client.email) {
+                window.scrollBy(0, 1);
+            }
+        }
+
         this.setState({
             client: {
                 ...this.state.client,
@@ -74,22 +82,72 @@ export class QuotationPage extends Component {
             alert("Ingrese un correo electrónico")
             return;
         }
-        try {
-            const query = await this.props.client.query({
-                query: GET_CLIENT_BY_EMAIL,
-                variables: { email: this.state.client.email },
-            });
-            if (query) {
-                console.log(query)
-            }
-        } catch (error) {
-            alert("Cliente no encontrado")
+        const client = await this.getClientByEmail();
+        if (client) {
+            this.setState({ client })
+            console.log(client)
+        }
+        else {
+            alert("El cliente no ha sido encontrado")
         }
     }
 
-    submitHandler = (addQuotation, addProductQuotation, editClient, addClient) => {
+    getClientByEmail = async () => {
+        try {
+            if (this.state.client.email) {
+                const query = await this.props.client.query({
+                    query: GET_CLIENT_BY_EMAIL,
+                    variables: { email: this.state.client.email },
+                });
+                if (query) {
+                    const client = query.data.clientByEmail;
+                    return client;
+                }
+            }
+            return null;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    submitHandler = async (addQuotation, addProductQuotation, editClient, addClient, event) => {
+        event.preventDefault();
+        //client
         if (this.state.productQuotations.length > 0) {
-            console.log(addQuotation, addProductQuotation, editClient, addClient)
+            let client = "";
+            if (this.state.client._id) {
+                const result = await editClient({ variables: { ...this.state.client, id: this.state.client._id } })
+                client = result.data.updateClient._id;
+            } else {
+                const clientInDB = await this.getClientByEmail();
+                if (clientInDB) {
+                    alert("El correo electrónico ya existe, por favor, haz click en la lupa");
+                    return;
+                }
+                const result = await addClient({ variables: { ...this.state.client } })
+                client = result.data.createClient._id;
+            }
+            console.log(client)
+
+            //product quotation
+            const productQuotations = await Promise.all(this.state.productQuotations.map(async (productQuotation) => {
+                const result = await addProductQuotation({
+                    variables: {
+                        ...productQuotation,
+                        quantity: +productQuotation.quantity,
+                        product: productQuotation.product._id
+                    }
+                })
+                const newProductQuotation = result.data.createProductQuotation;
+                return (newProductQuotation._id);
+            }))
+            console.log(productQuotations)
+
+            //Quotation
+            const result = await addQuotation({ variables: { client, productQuotations } })
+            console.log(result)
+            const quotation = result.data.createQuotation;
+            console.log(quotation);
             alert("Realizaremos la cotización a la brevedad");
             localStorage.clear();
             this.setState({ productQuotations: [] })
@@ -133,7 +191,6 @@ export class QuotationPage extends Component {
                             )
                         })}
                     </div>
-
                     {this.state.productQuotations.length > 0 ?
                         <div className="bg-gray client-form-cont">
                             <Mutation mutation={ADD_QUOTATION}>
@@ -145,29 +202,51 @@ export class QuotationPage extends Component {
                                                     <Mutation mutation={ADD_CLIENT}>
                                                         {(addClient) => (
                                                             <Form className="client-form" onSubmit={this.submitHandler.bind(this, addQuotation, addProductQuotation, editClient, addClient)} >
-                                                                <p style={{ textAlign: 'justify' }}>Si ya has cotizado anteriormente escribe tu correo electrónico y haz click en la lupa para buscar tu información.</p>
+                                                                <h1 style={{ textAlign: 'center', textTransform: 'uppercase' }}>Cliente</h1>
 
-                                                                <Form.Group controlId="formEmail">
-                                                                    <Form.Label>Correo electrónico</Form.Label>
-                                                                    <InputGroup>
-                                                                        <InputGroup.Prepend>
-                                                                            <button type="button" onClick={this.searchClient} className="input-btn btn-main">
-                                                                                <FontAwesomeIcon
-                                                                                    icon="search"
-                                                                                    size="lg"
+                                                                <Manager>
+                                                                    <Reference>
+                                                                        {({ ref }) => (
+                                                                            <Form.Group controlId="formEmail">
+                                                                                <Form.Label>Correo electrónico</Form.Label>
+                                                                                <InputGroup>
+                                                                                    <InputGroup.Prepend>
+                                                                                        <button type="button" onClick={this.searchClient} ref={ref} className="input-btn btn-main">
+                                                                                            <FontAwesomeIcon
+                                                                                                icon="search"
+                                                                                                size="lg"
+                                                                                            />
+                                                                                        </button>
+                                                                                    </InputGroup.Prepend>
+                                                                                    <Form.Control type="email" placeholder="Correo electrónico" required
+                                                                                        value={this.state.client.email} onChange={this.changeClientHandler.bind(this, "email")} />
+                                                                                </InputGroup>
+
+                                                                            </Form.Group>
+                                                                        )}
+                                                                    </Reference>
+                                                                    <Popper placement="top-start" modifiers={{ preventOverflow: { boundariesElement: 'container' } }}>
+                                                                        {({ ref, style, placement, arrowProps }) => (
+                                                                            <div ref={ref} style={{ ...style, margin: '0.75rem' }} data-placement={placement}
+                                                                                hidden={!this.state.client.email || this.state.client.email.length > 6}>
+                                                                                <div className="client-email-popper">
+                                                                                    <p style={{ textAlign: 'justify' }}>Si ya has cotizado anteriormente escribe tu correo electrónico y haz click en la lupa para buscar tu información.</p>
+                                                                                </div>
+                                                                                <Arrow
+                                                                                    ref={arrowProps.ref}
+                                                                                    data-placement={placement}
+                                                                                    style={arrowProps.style}
                                                                                 />
-                                                                            </button>
-                                                                        </InputGroup.Prepend>
-                                                                        <Form.Control type="email" placeholder="Correo electrónico" required
-                                                                            value={this.state.client.email} onChange={this.changeClientHandler.bind(this, "email")} />
-                                                                    </InputGroup>
+                                                                            </div>
+                                                                        )}
+                                                                    </Popper>
+                                                                </Manager>
 
-                                                                </Form.Group>
 
                                                                 <Form.Group controlId="formName">
                                                                     <Form.Label>Nombre completo</Form.Label>
                                                                     <Form.Control type="text" placeholder="Nombre completo"
-                                                                        value={this.state.client.name} onChange={this.changeClientHandler.bind(this, "name")} />
+                                                                        required value={this.state.client.name} onChange={this.changeClientHandler.bind(this, "name")} />
                                                                 </Form.Group>
                                                                 <Form.Group controlId="formCompany">
                                                                     <Form.Label>Empresa</Form.Label>
