@@ -32,7 +32,7 @@
 }
 
 .home__table {
-    margin: 2rem 0;
+    margin: 2rem auto;
 }
 
 .home__table img {
@@ -55,7 +55,8 @@
         font-size: 2rem;
     }
     .home__table {
-        margin: 3rem 0;
+        max-width: 80%;
+        margin: 3rem auto;
     }
     .home__catalogue {
         margin: 3rem 0;
