@@ -26,8 +26,8 @@ export class Chatbot extends Component {
                         className="chatbot-frame"
                         title="chatbot"
                         allow="microphone;"
-                        width="350"
-                        height="430"
+                        width="300"
+                        height="400"
                         src="https://console.dialogflow.com/api-client/demo/embedded/b6e43c79-c409-42a3-8daf-75a3f5143796">
                     </iframe>
                 </div>}

@@ -18,7 +18,7 @@ export class ContactPage extends Component {
 
                     <div className="contact__location">
                         <div className="contact__location-address">
-                            <p>Hermenegildo Galeana #135 Col. La Loma, C.P. 54060 Estado de México.</p>
+                            <p>Paseo del Otoño No. 114, Lote 21, manzana XXII, 114, La Florida, Naucalpan, Estado de México</p>
                             <p>
                                 <span>(55) 8526-2318 | </span>
                                 <span>ventas@epsilon.com | </span>
@@ -26,7 +26,7 @@ export class ContactPage extends Component {
                             </p>
                         </div>
                         <div className="contact__location-map">
-                            <Map coords={{ lat: 32.442408, lng: -114.743104 }} />
+                            <Map coords={{ lat: 19.4955729, lng: -99.2365598 }} />
                         </div>
                     </div>
 

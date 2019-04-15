@@ -3,6 +3,7 @@
 }
 
 .chatbot-button {
+    cursor: pointer;
     background-color: var(--main-contrast-color);
     color: white;
     border: none;

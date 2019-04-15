@@ -15,10 +15,8 @@ export class AboutPage extends Component {
                             <span className="text-red">—</span>Nosotros<span className="text-red">—</span>
                         </h1>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum
+                            Somos una empresa comprometida con el cliente, proveemos una atención personalizada desde el primer contacto y 
+                            ofrecemos servicios de calidad, donde nuestros productos son instalados rápida y puntualmente.
                         </p>
                     </div>
                     <Container fluid className="mb-5">
@@ -27,9 +25,8 @@ export class AboutPage extends Component {
                                 <div className="about__vision">
                                     <h2 className="text-red">Misión</h2>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                        aliquip ex ea commodo consequat.
+                                        Epsilon busca ofrecer la mejor experiencia en hardware y software al consumidor a través de equipo
+                                        de cómputo y accesorios que satisfaga las necesidades específicas y generales de su organización.
                                     </p>
                                 </div>
                             </Col>
@@ -37,9 +34,9 @@ export class AboutPage extends Component {
                                 <div className="about__vision">
                                     <h2 className="text-red">Visión</h2>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                        aliquip ex ea commodo consequat.
+                                        Consolidar el liderazgo de Epsilon en el mercado nacional, expandiendo su penetración de servicios
+                                        de arrendamiento de equipo de cómputo y accesorios en todos los mercados posibles, para situarnos
+                                        como una de las empresas de más rápido y mejor crecimiento a nivel nacional.
                                     </p>
                                 </div>
 
