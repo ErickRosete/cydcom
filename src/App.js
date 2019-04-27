@@ -19,7 +19,7 @@ import {
   faChevronCircleRight,
   faWindowClose
 } from "@fortawesome/free-solid-svg-icons";
-import { faFacebook, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faLinkedin, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
@@ -41,7 +41,8 @@ class App extends Component {
       faChevronLeft,
       faMapMarkerAlt,
       faChevronCircleLeft,
-      faChevronCircleRight
+      faChevronCircleRight,
+      faWhatsapp
     ]);
 
     return (
