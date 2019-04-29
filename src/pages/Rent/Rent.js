@@ -19,7 +19,7 @@ export class RentPage extends Component {
                 <div className="rent">
                     <div className="rent__intro">
                         <h1>Equipos en <span className="text-red">renta</span></h1>
-                        <p>Disfruta de los beneficios de rentar con CYDCOM. Te facilitamos el proceso de contratación y con ello contar con el equipo que requieres en el menor tiempo posible; además del respaldo de una empresa seria y profesional</p>
+                        <p>Disfruta de los beneficios de rentar con EPSILON. Te facilitamos el proceso de contratación y con ello contar con el equipo que requieres en el menor tiempo posible; además del respaldo de una empresa seria y profesional</p>
                     </div>
 
                     <div className="rent__categories">

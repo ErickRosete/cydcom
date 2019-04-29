@@ -17,7 +17,7 @@ const mainNavigation = props => {
         style={{ backgroundColor: props.navbarColor }}
       >
         <Navbar.Brand as={NavLink} to="/inicio">
-          <img src={logo} className="logo" alt="CYDCOM-Logo"/>
+          <img src={logo} className="logo" alt="epsilon-Logo"/>
         </Navbar.Brand>
 
         <Navbar.Toggle />

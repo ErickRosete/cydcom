@@ -51,7 +51,7 @@ export class HomePage extends Component {
       <Layout navbarColor={this.state.navbarColor}>
         <div className="home">
           <Helmet>
-            <title>CYDCOM | Renta de computadoras</title>
+            <title>EPSILON | Renta de computadoras</title>
             <meta
               name="description"
               content="Renta de computadoras, proyectores e ipad"
