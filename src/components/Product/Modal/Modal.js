@@ -35,7 +35,7 @@ const ProductModal = (props) => {
                         </Col>
                         <Col xs={12} lg={6}>
                             <div className="product__modal-details">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <p>{product.details}</p>
                                 <h2>Características</h2>
                                 <div className="product__modal-features" dangerouslySetInnerHTML={{ __html: product.description }} />
                             </div>

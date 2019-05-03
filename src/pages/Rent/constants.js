@@ -8,6 +8,7 @@ export const GET_PRODUCTS = gql`
         imageLinks
         shortDescription
         description
+        details
         subcategories {
             _id
             name
@@ -23,6 +24,7 @@ export const GET_SUBCATEGORY_PRODUCTS = gql`
         name
         imageLinks
         shortDescription
+        details
         description
         subcategories {
             _id
