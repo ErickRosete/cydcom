@@ -3,10 +3,10 @@ import Layout from "../../../components/Layout/Layout"
 
 import CardList from "../../../components/Product/CardList/CardList"
 import ProductModal from "../../../components/Product/Modal/Modal"
-import PromotionCarousel from "../../../components/Carousel/Carousel"
 
 // import foto from "../../../Assets/Images/Discounts/descuento.png"
-import { GET_SUBCATEGORY_PRODUCTS, GET_PROMOTIONS } from "../constants";
+import promotionImg from "../../../Assets/Images/Discounts/promotion.png"
+import { GET_SUBCATEGORY_PRODUCTS, GET_PROMOTION } from "../constants";
 
 import Pagination from "rc-pagination";
 
@@ -110,15 +110,23 @@ export class RentPage extends Component {
         return (
             <Layout>
                 <div className="rent__category">
-                    <Query query={GET_PROMOTIONS}>
+                    <Query query={GET_PROMOTION}>
                         {({ loading, error, data }) => {
                             if (loading) return <Spinner />;
                             if (error) return <p>Error :( recarga la pagina!</p>;
-                            const images = data.activePromotions.map(promotion => promotion.imageLink);
-
+                            const promotion = data.firstPromotion;
                             return (
                                 <div className="rent__category-promotion">
-                                    {images && <PromotionCarousel images={images}></PromotionCarousel>}
+                                    <img src={promotionImg} alt="Promoción" />
+                                    <div className="promotion-first-bg"></div>
+                                    <div className="promotion-second-bg">
+                                        <p className="promotion-percentage">{promotion.percentage}</p>
+                                        <div>
+                                            <p className="promotion-title">{promotion.title}</p>
+                                            <p className="promotion-subtitle">{promotion.subtitle}</p>
+                                        </div>
+
+                                    </div>
                                 </div>
                             );
                         }}

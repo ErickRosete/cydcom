@@ -45,12 +45,13 @@ export const GET_SUBCATEGORIES = gql`
   }
 `;
 
-export const GET_PROMOTIONS = gql`
+export const GET_PROMOTION = gql`
 {
-  activePromotions {
+  firstPromotion {
     _id
-    name
-    imageLink
+    title
+    subtitle
+    percentage
   }
 }
 `;
