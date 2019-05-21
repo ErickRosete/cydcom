@@ -5,7 +5,7 @@ import Footer from "./Footer/Footer"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Layout.css";
 
-const whatsUrl = "https://wa.me/15551234567?text=Iam%20interested%20"
+const whatsUrl = "https://wa.me/5215544902948?text=Hola,%20me%20interesa%20"
 // const whatsUrlButton=`javascript:window.open('${whatsUrl}', 'yourWindowName', 'width=700,height=600,top=200, left=460');`
 const displayWhats = () => {
   window.open(whatsUrl, 'yourWindowName', 'width=700,height=600,top=200, left=460')
