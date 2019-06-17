@@ -21,7 +21,7 @@ export class ContactPage extends Component {
                             <p>Paseo del Otoño No. 114, Lote 21, manzana XXII, 114, La Florida, Naucalpan, Estado de México</p>
                             <p>
                                 <span>(55) 9627-8073 | </span>
-                                <span>ventas@epsilon.com | </span>
+                                <span>ventas@epsiloncomputadoras.mx | </span>
                                 <span>Lunes a Viernes: 9.00 am. - 7.00 pm.</span>
                             </p>
                         </div>

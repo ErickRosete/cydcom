@@ -34,8 +34,8 @@ const Footer = () => {
             <div className="footer__info">
               <div className="footer__section">
                 <h3>E-mail</h3>
-                <p>ventas@epsilon.com.mx</p>
-                <p>ventas.qro@epsilon.com.mx</p>
+                <p>ventas@epsiloncomputadoras.mx</p>
+                {/* <p>ventas.qro@epsilon.com.mx</p> */}
               </div>
               <div className="footer__section">
                 <h3>Ubicación</h3>
